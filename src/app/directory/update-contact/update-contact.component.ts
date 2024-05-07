@@ -90,4 +90,124 @@ export class UpdateContactComponent {
 
   }
 
+  update(valor:any,id:any,category:any){
+
+    console.log(valor)
+     if(category== "address"){
+
+      console.log("Se movio en address")
+
+      const form={
+        address: valor
+       }
+
+       console.log(form);
+      this._contactService.updateAddress(id,form).subscribe({
+        next: ({ data, code, status }) => {
+ 
+          if(  status == "success" ){ 
+  
+            console.log("se actualizo")
+            }          
+        },
+        error: ( error ) => {
+          console.log( error );
+        }
+      });
+      
+
+
+     }
+    if(category== "phone"){
+      console.log("Se movio en phone")
+    }
+    if(category== "email"){
+
+      console.log("Se movio en email")
+
+      const form={
+        email: valor
+       }
+
+       console.log(form);
+      this._contactService.updateEmail(id,form).subscribe({
+        next: ({ data, code, status }) => {
+ 
+          if(  status == "success" ){ 
+  
+            console.log("se actualizo")
+            }          
+        },
+        error: ( error ) => {
+          console.log( error );
+        }
+      });
+
+
+    }
+    if(category== "lastname"){
+      console.log("Se movio en lastname")
+    }
+    if(category== "name"){
+      console.log("Se movio en name")
+    }
+
+  }
+
+  
+  addphonetoContact(form: NgForm) {
+ 
+    Swal.fire({
+      title: "¿Decea añadir un nuevo telefono?",
+      showCancelButton: true,
+      confirmButtonText: "si"
+    }).then((result) => {
+      if (result.isConfirmed) {        
+        console.log(form.value)
+
+        this._contactService.addphonetoContact(form.value).subscribe(
+          (resp) => {
+            if (resp.status === "success") {
+              Swal.fire("telefono almacenado correctamente!", "", "success");
+              setTimeout(() => {
+                window.location.reload();
+              }, 3000);
+            } else {
+              Swal.fire(resp.message != undefined ? resp.message : resp.errors != undefined && resp.errors.length > 0 ? resp.errors[0] : 'Ocurrió un problema', "", "error");
+            }
+          }              
+        );  
+      }
+    });
+
+  }
+
+
+  addemailtoContact(form: NgForm) {
+ 
+    Swal.fire({
+      title: "¿Decea añadir un nuevo email?",
+      showCancelButton: true,
+      confirmButtonText: "si"
+    }).then((result) => {
+      if (result.isConfirmed) {        
+        console.log(form.value)
+
+        this._contactService.addemailoContact(form.value).subscribe(
+          (resp) => {
+            if (resp.status === "success") {
+              Swal.fire("email almacenado correctamente!", "", "success");
+              setTimeout(() => {
+                window.location.reload();
+              }, 3000);
+            } else {
+              Swal.fire(resp.message != undefined ? resp.message : resp.errors != undefined && resp.errors.length > 0 ? resp.errors[0] : 'Ocurrió un problema', "", "error");
+            }
+          }              
+        );  
+      }
+    });
+
+  }
+
 }

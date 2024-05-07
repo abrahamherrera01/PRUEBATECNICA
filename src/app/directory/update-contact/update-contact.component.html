@@ -4,15 +4,16 @@
 
     <div class="col-12 p-3">
       <!-- Form -->
-      <form #formulario="ngForm" class="" (ngSubmit)="onSubmit(formulario)">
+         <h3 class="text-center" > Actualizar contacto</h3>
         <div class="row mb-2 txt">
           <!-- Name -->
           <div class="col-12 mb-3">
             <div class="form-group">
               <label for="name">Nombre(s)</label>
 
-              <input type="text" class="form-control" id="name" placeholder="John" required name="name"
-                ngModel="{{data[0].name}}">
+              <input #nameInput type="text" class="form-control" id="name" placeholder="John" required name="name"
+              [(ngModel)]="data[0].name"  
+              (change)="update( data[0].lastname, data[0].id, 'name')">
             </div>
           </div>
 
@@ -20,28 +21,32 @@
             <div class="form-group">
               <label for="surname">Apellidos</label>
               <input type="text" class="form-control" id="lastname" placeholder="Doe" required name="lastname"
-                ngModel="{{data[0].lastname}}">
+                ngModel="{{data[0].lastname}}"
+                (change)="update( data[0].lastname, data[0].id, 'lastname')">
             </div>
           </div>
           <div class="col-12 mb-3 ">
             <div class="form-group">
               <label for="surname">Emails:</label>
-              <input *ngFor="let email of data[0].emails" type="text" class="form-control" id="email" placeholder="Doe"
-                required name="{{email.id}}" ngModel="{{ email.email }}">
+              <input *ngFor="let email of data[0].emails" type="text" class="form-control" id="E{{email.id}}" placeholder="Doe"
+                required name="E{{email.id}}" ngModel="{{ email.email }}"
+                (change)="update( email.email, email.id, 'email')">
             </div>
           </div>
           <div class="col-12  mb-3">
             <div class="form-group">
               <label for="surname">Telefonos:</label>
-              <input *ngFor="let phone of data[0].phones" type="text" class="form-control" id="phone1" placeholder="Doe"
-                required name="phone1" ngModel="{{ phone.phone }}">
+              <input *ngFor="let phone of data[0].phones" type="text" class="form-control" id="P{{ phone.phone }}" placeholder="Doe"
+                required name="P{{ phone.phone }}" ngModel="{{ phone.phone }}"
+                (change)="update( phone.phone, phone.id, 'phone')">
             </div>
           </div>
           <div class="col-12  mb-3">
             <div class="form-group">
               <label for="surname">Direcciones;</label>
-              <input *ngFor="let address of data[0].address" type="text" class="form-control mb-3" id="{{ address.id }}" placeholder="Doe"
-                required name="{{ address.id }}" ngModel="{{ address.address }}">
+              <input *ngFor="let address of data[0].address" type="text" class="form-control mb-3" id="d{{ address.id }}" placeholder="Doe"
+                required name="D{{ address.id }}" [(ngModel)]="address.address" 
+                (change)="update( address.address, address.id, 'address')">
             </div>
           </div>
         </div>
@@ -57,8 +62,12 @@
           <div class="row">
             <div class="col-12  ">
               <div class="form-group">
-                <label for="phone">Número de Teléfono</label>
-                <input type="tel" class="form-control" id="phone" placeholder="1234567890" name="phone" ngModel>
+                <form #formulario="ngForm" class="" (ngSubmit)="addphonetoContact(formulario)">
+                    <input type="hidden" name="contact_id" ngModel="{{data[0].id}}" id="contact_id">
+                    <label for="phone">Número de Teléfono</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="1234567890" name="phone" ngModel>
+                    <button type="submit">añadir</button>
+                </form>
               </div>
             </div>
           </div>
@@ -76,8 +85,14 @@
             <div class="col-12  ">
               <div class="form-group">
                 <label for="email">Correo Electrónico</label>
-                <input type="email" class="form-control" id="email" placeholder="example@example.com" required
-                  name="email" ngModel>
+                <form #formulario="ngForm" class="" (ngSubmit)="addemailtoContact(formulario)">
+                    <input type="hidden" name="contact_id" ngModel="{{data[0].id}}" id="contact_id">
+                    <input type="email" class="form-control" id="email" placeholder="example@example.com" required
+                    name="email" ngModel>
+                    <button type="submit">añadir</button>
+
+                </form>
+
               </div>
             </div>
           </div>
@@ -101,15 +116,6 @@
             </div>
           </div>
         </div>
-
-
-
-        <div class="row">
-          <div class="mt-3  text-center">
-            <button type="submit" class="  submit btn btn-primary">Enviar</button>
-          </div>
-        </div>
-      </form>
-    </div>
+     </div>
   </div>
 </div>
