@@ -55,4 +55,10 @@ export class ContactsService {
     return this._http.post<any>(`${ this.url }/api/email`, form);
 
   }
+
+  addaddressContact(form: any ):Observable<any>{
+    console.log(form);
+    return this._http.post<any>(`${ this.url }/api/address`, form);
+
+  }
 }
