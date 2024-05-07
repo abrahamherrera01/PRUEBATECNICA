@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { GetcontactsInterface } from '../interfaces/getcontacts.interface';
+import { UntypedFormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -18,4 +19,11 @@ export class ContactsService {
   getContacts():Observable<GetcontactsInterface>{
     return this._http.get<GetcontactsInterface>(`${this.url}/api/getContacts`);
   }
+  
+  addContact( form: UntypedFormGroup ):Observable<any>{
+    return this._http.post<any>(`${ this.url }/api/createContact`, form);
+
+  }
+
+ 
 }

@@ -2,15 +2,9 @@
   <div class="row">
     <div class="col-4">
       <h2>Contactos</h2>
-      <li class="list-group-item p-2 puntero"  routerLink="addcontacto" >
-        <div class="row mb-3">
-          <div class="col-12">
-            <div class="media-body align-self-center">
-              <a class="text-success"> Crear Nuevo Contacto +</a>
-            </div>
-          </div>
-        </div>
-      </li>
+  
+      <button  routerLink="/contact/add" class="btnb btn btn-outline-primary mb-3" routerLink="/contact/add"> Crear Nuevo Contacto +</button>
+
       <ul class="list-group list-group-flush mb-3" *ngFor="let contact of data" (click)="showContactDetails(contact)">
         <li class="list-group-item p-2 puntero">
           <div class="row">

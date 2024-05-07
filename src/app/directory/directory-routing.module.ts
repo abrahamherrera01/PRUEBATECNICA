@@ -5,9 +5,12 @@ import { MainComponent } from './main/main.component';
 
  
 const routes:Routes=[
-    { path: '**', redirectTo: 'contact' },
     {path: 'add', component: AddContactComponent},
+    {path: 'contacts', component: MainComponent},
+    { path: '**', redirectTo: 'contact' },
+
 ]
+
 
 @NgModule({
     imports: [
