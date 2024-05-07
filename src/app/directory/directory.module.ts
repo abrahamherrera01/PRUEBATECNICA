@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router'; // Importa RouterModule 
 import { MainComponent } from './main/main.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { DirectoryRoutingModule } from './directory-routing.module';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
 
  
 @NgModule({
@@ -13,11 +15,14 @@ import { DirectoryRoutingModule } from './directory-routing.module';
   ],
   imports: [
     CommonModule,
-    DirectoryRoutingModule
+    DirectoryRoutingModule,
+    MatInputModule,
+    FormsModule
     
   ],
   exports: [
-    MainComponent
+    MainComponent,
+    MatInputModule
   ]
 })
 export class DirectoryModule { }
