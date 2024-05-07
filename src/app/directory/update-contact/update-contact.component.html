@@ -29,7 +29,7 @@
             <div class="form-group">
               <label for="surname">Emails:</label>
               <input *ngFor="let email of data[0].emails" type="text" class="form-control mb-2" id="E{{email.id}}" placeholder="Doe"
-                required name="E{{email.id}}" ngModel="{{ email.email }}"
+                required name="E{{email.id}}" [(ngModel)]="email.email"
                 (change)="update( email.email, email.id, 'email')">
             </div>
           </div>
@@ -37,7 +37,7 @@
             <div class="form-group">
               <label for="surname">Telefonos:</label>
               <input *ngFor="let phone of data[0].phones" type="text" class="form-control mb-2" id="P{{ phone.phone }}" placeholder="Doe"
-                required name="P{{ phone.phone }}" ngModel="{{ phone.phone }}"
+                required name="P{{ phone.id }}"  [(ngModel)]="phone.phone" 
                 (change)="update( phone.phone, phone.id, 'phone')">
             </div>
           </div>

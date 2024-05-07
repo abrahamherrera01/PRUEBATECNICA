@@ -92,16 +92,8 @@ export class UpdateContactComponent {
 
   update(valor:any,id:any,category:any){
 
-    console.log(valor)
      if(category== "address"){
-
-      console.log("Se movio en address")
-
-      const form={
-        address: valor
-       }
-
-       console.log(form);
+      const form={address: valor}
       this._contactService.updateAddress(id,form).subscribe({
         next: ({ data, code, status }) => {
  
@@ -114,29 +106,28 @@ export class UpdateContactComponent {
           console.log( error );
         }
       });
-      
-
-
      }
-    if(category== "phone"){
-      console.log("Se movio en phone")
+    if(category == "phone"){
+      const form={phone: valor}
+      this._contactService.updatephone(id,form).subscribe({
+        next: ({ data, code, status }) => {
+          if(  status == "success" ){ 
+            console.log("actualizado")
+          }          
+        },
+        error: ( error ) => {
+          console.log( error );
+        }
+      });
     }
     if(category== "email"){
 
-      console.log("Se movio en email")
-
-      const form={
-        email: valor
-       }
-
-       console.log(form);
+      const form={email: valor}
       this._contactService.updateEmail(id,form).subscribe({
         next: ({ data, code, status }) => {
- 
           if(  status == "success" ){ 
-  
-            console.log("se actualizo")
-            }          
+            console.log("actualizado")
+          }          
         },
         error: ( error ) => {
           console.log( error );
