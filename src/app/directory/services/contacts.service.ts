@@ -44,6 +44,12 @@ export class ContactsService {
    
   }
 
+  updatephone(contact_id:any, form: any ):Observable<any>{
+ 
+    return this._http.put<any>(`${this.url}/api/phone/${contact_id}`,form);
+   
+  }
+
   addphonetoContact(form: any ):Observable<any>{
     console.log(form);
     return this._http.post<any>(`${ this.url }/api/phone`, form);
