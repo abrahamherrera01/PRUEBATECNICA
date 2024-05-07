@@ -210,4 +210,31 @@ export class UpdateContactComponent {
 
   }
 
+  addeaddresstoContact(form: NgForm) {
+ 
+    Swal.fire({
+      title: "¿Decea añadir un nuevo email?",
+      showCancelButton: true,
+      confirmButtonText: "si"
+    }).then((result) => {
+      if (result.isConfirmed) {        
+        console.log(form.value)
+
+        this._contactService.addaddressContact(form.value).subscribe(
+          (resp) => {
+            if (resp.status === "success") {
+              Swal.fire("email almacenado correctamente!", "", "success");
+              setTimeout(() => {
+                window.location.reload();
+              }, 3000);
+            } else {
+              Swal.fire(resp.message != undefined ? resp.message : resp.errors != undefined && resp.errors.length > 0 ? resp.errors[0] : 'Ocurrió un problema', "", "error");
+            }
+          }              
+        );  
+      }
+    });
+
+  }
+
 }
