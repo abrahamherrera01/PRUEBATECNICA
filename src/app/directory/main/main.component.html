@@ -1,0 +1,67 @@
+<div class="container p-3">
+  <div class="row">
+    <div class="col-4">
+      <h2>Contactos</h2>
+      <li class="list-group-item p-2 puntero"  routerLink="addcontacto" >
+        <div class="row mb-3">
+          <div class="col-12">
+            <div class="media-body align-self-center">
+              <a class="text-success"> Crear Nuevo Contacto +</a>
+            </div>
+          </div>
+        </div>
+      </li>
+      <ul class="list-group list-group-flush mb-3" *ngFor="let contact of data" (click)="showContactDetails(contact)">
+        <li class="list-group-item p-2 puntero">
+          <div class="row">
+            <div class="col-3">
+              <img class=" img rounded-circle mr-3" src="https://cdn-icons-png.flaticon.com/256/11461/11461172.png" />
+            </div>
+            <div class="col-9">
+              <div class="media-body align-self-center">
+                <strong class="text-primary"> {{ contact.name }} {{ contact.lastname }}</strong>
+                <div class="text-muted">Telefono:
+                  {{ contact.phones[0]?.phone ? contact.phones[0].phone : 'Sin número' }}</div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="col-8">
+      <div *ngIf="selectedContact" class="container p-3">
+        <div class="row">
+          <img class="image" src="https://cdn-icons-png.flaticon.com/256/11461/11461172.png" />
+          <p class="text-secondary">Nombre: {{ selectedContact.name }} {{ selectedContact.lastname }}</p>
+          <hr>
+          <div *ngIf="selectedContact.phones.length > 0">
+            <p class="text-secondary">Teléfonos:</p>
+            <ul>
+              <li *ngFor="let phone of selectedContact.phones" class="text-secondary">{{ phone.phone }}</li>
+            </ul>
+          </div>
+          <hr>
+          <div *ngIf="selectedContact.emails.length > 0">
+            <p class="text-secondary">Emails:</p>
+            <ul>
+              <li *ngFor="let email of selectedContact.emails" class="text-secondary">{{ email.email }}</li>
+            </ul>
+          </div>
+          <div *ngIf="selectedContact.emails.length > 0">
+            <p class="text-secondary">Direcciones:</p>
+            <ul>
+              <li *ngFor="let address of selectedContact.address" class="text-secondary">{{ address.address }}</li>
+            </ul>
+          </div>
+          <hr>
+        </div>
+      </div>
+      <div *ngIf="!selectedContact" class="container p-3">
+        <div class="row">
+          <h2 class="text-secondary">Ningún contacto seleccionado</h2>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
