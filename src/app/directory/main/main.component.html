@@ -3,7 +3,7 @@
     <div class="col-4">
       <h3>Lista deContactos </h3>
     <hr>
-      <button  routerLink="/contact/add" class="text-center btnb btn btn-outline-primary mb-3" routerLink="/contact/add"> Crear Nuevo Contacto +</button>
+      <button   class="text-center btnb btn btn-outline-primary mb-3" routerLink="/contact/add"> Crear Nuevo Contacto +</button>
 
       <ul class="list-group list-group-flush mb-3 " *ngFor="let contact of data" (click)="showContactDetails(contact)">
         <li class="list-group-item p-2 puntero ">
@@ -54,16 +54,23 @@
         <div class="row">
           <div class="col-12">
             <div class="row">
-              <form #formulario="ngForm" class="">
-                <input
-                  class="form-control"
-                  id="contact_id"
-                  type="hidden"
-                  name="contact_id"
-                  [(ngModel)]="selectedContact.id">  
-                <button (click)="deleteContact(formulario)" class="btn btn-danger text-center">Eliminar</button>
-              </form>
+              <div class="col-3">
+                <form #formulario="ngForm" class="">
+                  <input
+                    class="form-control"
+                    id="contact_id"
+                    type="hidden"
+                    name="contact_id"
+                    [(ngModel)]="selectedContact.id">  
+                    <button (click)="deleteContact(formulario)" class="btn btn-danger text-center">Eliminar</button>
+                  </form>
+              </div>
+
+              <div class="col-3">
+                <button routerLink="/contact/update/{{selectedContact.id}}"  class="btn btn-outline-primary text-center">Actualizar</button>
+              </div>
               
+
              </div>
           </div>
         </div>
