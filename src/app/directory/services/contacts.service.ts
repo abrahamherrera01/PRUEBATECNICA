@@ -22,7 +22,10 @@ export class ContactsService {
   
   addContact( form: UntypedFormGroup ):Observable<any>{
     return this._http.post<any>(`${ this.url }/api/createContact`, form);
+  }
 
+  DeleteContact( form: UntypedFormGroup ):Observable<any>{
+    return this._http.post<any>(`${ this.url }/api/deleteContact/`, form);
   }
 
  
