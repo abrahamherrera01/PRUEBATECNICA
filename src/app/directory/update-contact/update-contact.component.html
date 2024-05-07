@@ -1,0 +1,115 @@
+<div class="container">
+  <div class="row p-5">
+    <button class="btnb btn btn-outline-primary" routerLink="/contact/contacts"> Atras</button>
+
+    <div class="col-12 p-3">
+      <!-- Form -->
+      <form #formulario="ngForm" class="" (ngSubmit)="onSubmit(formulario)">
+        <div class="row mb-2 txt">
+          <!-- Name -->
+          <div class="col-12 mb-3">
+            <div class="form-group">
+              <label for="name">Nombre(s)</label>
+
+              <input type="text" class="form-control" id="name" placeholder="John" required name="name"
+                ngModel="{{data[0].name}}">
+            </div>
+          </div>
+
+          <div class="col-12 mb-3 ">
+            <div class="form-group">
+              <label for="surname">Apellidos</label>
+              <input type="text" class="form-control" id="lastname" placeholder="Doe" required name="lastname"
+                ngModel="{{data[0].lastname}}">
+            </div>
+          </div>
+          <div class="col-12 mb-3 ">
+            <div class="form-group">
+              <label for="surname">Emails:</label>
+              <input *ngFor="let email of data[0].emails" type="text" class="form-control" id="email" placeholder="Doe"
+                required name="{{email.id}}" ngModel="{{ email.email }}">
+            </div>
+          </div>
+          <div class="col-12  mb-3">
+            <div class="form-group">
+              <label for="surname">Telefonos:</label>
+              <input *ngFor="let phone of data[0].phones" type="text" class="form-control" id="phone1" placeholder="Doe"
+                required name="phone1" ngModel="{{ phone.phone }}">
+            </div>
+          </div>
+          <div class="col-12  mb-3">
+            <div class="form-group">
+              <label for="surname">Direcciones;</label>
+              <input *ngFor="let address of data[0].address" type="text" class="form-control mb-3" id="{{ address.id }}" placeholder="Doe"
+                required name="{{ address.id }}" ngModel="{{ address.address }}">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12  mb-3">
+            <button type="button" class="btn  btn-outline-primary" (click)="togglePhoneField()">+ Añadir
+              Teléfono</button>
+          </div>
+        </div>
+
+        <div *ngIf="showPhoneField">
+          <div class="row">
+            <div class="col-12  ">
+              <div class="form-group">
+                <label for="phone">Número de Teléfono</label>
+                <input type="tel" class="form-control" id="phone" placeholder="1234567890" name="phone" ngModel>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row mt-2">
+          <div class="col-12 mb-3 ">
+            <button type="button" class="btn  btn-outline-primary" (click)="toggleEmail()">+ Añadir Email</button>
+          </div>
+        </div>
+
+        <div *ngIf="showEmailField">
+          <div class="row">
+            <div class="col-12  ">
+              <div class="form-group">
+                <label for="email">Correo Electrónico</label>
+                <input type="email" class="form-control" id="email" placeholder="example@example.com" required
+                  name="email" ngModel>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-12  ">
+            <button type="button" class="btn  btn-outline-primary" (click)="toggleAddressField()">Añadir
+              Dirección</button>
+          </div>
+        </div>
+
+        <div *ngIf="showAddressField">
+          <div class="row">
+            <div class="col-12  ">
+              <div class="form-group">
+                <label for="address">Dirección</label>
+                <input type="text" class="form-control" id="address"
+                  placeholder="ejemplo: Siempre viva 742 en Springfield" name="address" ngModel>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="mt-3  text-center">
+            <button type="submit" class="  submit btn btn-primary">Enviar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

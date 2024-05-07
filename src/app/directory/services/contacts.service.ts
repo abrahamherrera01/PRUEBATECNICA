@@ -28,5 +28,8 @@ export class ContactsService {
     return this._http.post<any>(`${ this.url }/api/deleteContact/`, form);
   }
 
+  getContactbyId(contact_id:any){
+    return this._http.get<GetcontactsInterface>(`${this.url}/api/getContactsbyId/${contact_id}`);
+  }
  
 }
